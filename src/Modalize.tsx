@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Animated, View, Platform, Dimensions, Modal, Easing, LayoutChangeEvent, StyleProp, BackHandler, KeyboardAvoidingView, Keyboard, NativeModules, StyleSheet, ScrollView, FlatList, SectionList } from 'react-native';
+import { Animated, View, Platform, Dimensions, Modal, Easing, LayoutChangeEvent, StyleProp, KeyboardAvoidingView, Keyboard, NativeModules, StyleSheet, ScrollView, FlatList, SectionList } from 'react-native';
 import { PanGestureHandler, NativeViewGestureHandler, State, TapGestureHandler, PanGestureHandlerStateChangeEvent, TapGestureHandlerStateChangeEvent } from 'react-native-gesture-handler';
 
 import { IProps, IState } from './Options';
@@ -105,16 +105,16 @@ export default class Modalize extends React.Component<IProps, IState> {
   componentDidMount() {
     this.onContentViewChange();
 
-    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
-    Keyboard.addListener('keyboardWillShow', this.onKeyboardShow);
-    Keyboard.addListener('keyboardWillHide', this.onKeyboardHide);
+    // BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+    // Keyboard.addListener('keyboardWillShow', this.onKeyboardShow);
+    // Keyboard.addListener('keyboardWillHide', this.onKeyboardHide);
   }
 
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
-    Keyboard.removeListener('keyboardWillShow', this.onKeyboardShow);
-    Keyboard.removeListener('keyboardWillHide', this.onKeyboardHide);
-  }
+  // componentWillUnmount() {
+  //   BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  //   Keyboard.removeListener('keyboardWillShow', this.onKeyboardShow);
+  //   Keyboard.removeListener('keyboardWillHide', this.onKeyboardHide);
+  // }
 
   public open = (): void => {
     const { onOpen } = this.props;
@@ -397,13 +397,7 @@ export default class Modalize extends React.Component<IProps, IState> {
   }
 
   private onBackPress = async (): Promise<boolean> => {
-    const { onBackButtonPress } = this.props;
-
-    if (onBackButtonPress) {
-      onBackButtonPress();
-    } else {
-      this.close();
-    }
+    this.close();
 
     return true;
   }
